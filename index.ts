@@ -59,9 +59,23 @@ const main = async () => {
   const worksheet = content.worksheets[1];
   const rowStartIndex = 4;
   const numberOfRows = worksheet.rowCount - 3;
-
+    worksheet.addRow([
+        '97',
+        'M',
+        'USA',
+        'Ryan',
+        'Zapolski',
+        '203',
+        '6',
+        '1986-11-11',
+        'Erie',
+        '96',
+        'Goalie',
+        '35',
+        '6',
+        '72',
+        '28']);
   const rows = worksheet.getRows(rowStartIndex, numberOfRows) ?? [];
-
   const players = rows.map((row): Player => {
     return {
       // @ts-ignore
