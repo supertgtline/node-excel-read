@@ -1,7 +1,7 @@
 import * as path from 'path';
 import Excel from 'exceljs';
 
-const filePath = path.resolve(__dirname, 'olympic-hockey-player.xlsx');
+const filePath = path.resolve(__dirname, 'olympic.xlsx');
 
 type Team = 'M' | 'W';
 type Country = 'Canada' | 'USA';
@@ -25,10 +25,7 @@ type Player = {
   bmi: number;
 };
 const getCellValue = (row:  Excel.Row, cellIndex: number) => {
-    const cell = row.getCell(cellIndex);
-  
-    console.log(cell.value);
-  
+    const cell = row.getCell(cellIndex);  
     return cell.value ? cell.value.toString() : '';
   };
   
@@ -51,30 +48,33 @@ const getCellValue = (row:  Excel.Row, cellIndex: number) => {
   
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   };
-
+  const addRow = [
+    '91119',
+    'M',
+    'USA',
+    'Ryan',
+    'Zapolski',
+    '203',
+    '6',
+    '1986-11-11',
+    'Erie',
+    '96',
+    'Goalie',
+    '35',
+    '6',
+    '72',
+    '28'
+  ];
 const main = async () => {
   const workbook = new Excel.Workbook();
   const content = await workbook.xlsx.readFile(filePath);
-
   const worksheet = content.worksheets[1];
+  await worksheet.addRow(addRow);
+  await workbook.xlsx.writeFile(filePath)
   const rowStartIndex = 4;
   const numberOfRows = worksheet.rowCount - 3;
-    worksheet.addRow([
-        '97',
-        'M',
-        'USA',
-        'Ryan',
-        'Zapolski',
-        '203',
-        '6',
-        '1986-11-11',
-        'Erie',
-        '96',
-        'Goalie',
-        '35',
-        '6',
-        '72',
-        '28']);
+  
+  
   const rows = worksheet.getRows(rowStartIndex, numberOfRows) ?? [];
   const players = rows.map((row): Player => {
     return {

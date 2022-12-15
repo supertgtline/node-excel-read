@@ -9,10 +9,10 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
-  
-      "start": "ts-node index.ts"
+    "start": "ts-node index.ts"
   },
   "dependencies": {
-    "exceljs": "^4.3.0"
+    "exceljs": "^4.3.0",
+    "yarn": "^1.22.19"
   }
 }
