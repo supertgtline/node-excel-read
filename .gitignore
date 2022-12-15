@@ -1,0 +1,7 @@
+/.vscode
+/index.ts
+/node_modules
+/olympic-hockey-player.xlsx
+/package.json
+/tsconfig.json
+/yarn.lock
